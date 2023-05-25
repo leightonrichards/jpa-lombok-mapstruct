@@ -16,7 +16,7 @@ public class TransactionItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_number", referencedColumnName = "transaction_number")
-    private SalesTransaction transactionNumber;
+    private SalesTransaction parentTransaction;
 
     @Column(name = "item_number")
     private Integer itemNumber;

@@ -26,7 +26,7 @@ public class SalesTransaction {
     @Column(name = "transaction_value", nullable = false)
     private Integer transactionValue;
 
-    @OneToMany(mappedBy = "transactionNumber")
+    @OneToMany(mappedBy = "parentTransaction")
     private Set<TransactionItem> transactionItems = new LinkedHashSet<>();
 
 }

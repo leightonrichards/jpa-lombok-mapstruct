@@ -1,9 +1,10 @@
 package com.example.jpa.controller;
 
-import com.example.jpa.domain.Order;
+import com.example.jpa.dto.OrderDto;
 import com.example.jpa.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class OrderController {
             value = {"/{description}"},
             produces = {"application/json"}
     )
-    Order findByDescription(String description) {
+    OrderDto findByDescription(@PathVariable String description) {
         return orderService.fetchByDescription(description);
     }
 
@@ -28,7 +29,7 @@ public class OrderController {
             value = {"/"},
             produces = {"application/json"}
     )
-    List<Order> findAll() {
+    List<OrderDto> findAll() {
         return orderService.fetchOrders();
     }
 }

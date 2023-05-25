@@ -1,6 +1,6 @@
 package com.example.jpa.service;
 
-import com.example.jpa.domain.Order;
+import com.example.jpa.dto.OrderDto;
 import com.example.jpa.mapper.OrderMapper;
 import com.example.jpa.repository.SalesTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ public class OrderServiceImpl implements OrderService{
     private OrderMapper mapper;
 
     @Override
-    public List<Order> fetchOrders() {
-        return mapper.toDomain(repository.findAll());
+    public List<OrderDto> fetchOrders() {
+        return mapper.toDto(repository.findAll());
     }
 
     @Override
-    public Order fetchByDescription(String desc) {
-        return mapper.toDomain(repository.findByDescription(desc));
+    public OrderDto fetchByDescription(String desc) {
+        return mapper.toDto(repository.findByDescription(desc));
     }
 }

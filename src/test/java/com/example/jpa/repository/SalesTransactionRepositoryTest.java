@@ -22,5 +22,8 @@ class SalesTransactionRepositoryTest {
     public void whenOrderIsInserted_thenOrderCanBeFound() {
         SalesTransaction order = salesTransactionRepository.findByDescription("SalesTransaction1");
         assertEquals(100, order.getTransactionValue());
+        assertEquals(1, order.getTransactionNumber());
+        assertEquals(3, order.getTransactionItems().size());
+        assertEquals(100, order.getTransactionItems().stream().mapToInt(item -> item.getItemValue()).sum());
     }
 }

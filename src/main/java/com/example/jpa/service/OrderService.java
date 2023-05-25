@@ -1,10 +1,10 @@
 package com.example.jpa.service;
 
-import com.example.jpa.domain.Order;
+import com.example.jpa.dto.OrderDto;
 
 import java.util.List;
 
 public interface OrderService {
-    List<Order> fetchOrders();
-    Order fetchByDescription(String desc);
+    List<OrderDto> fetchOrders();
+    OrderDto fetchByDescription(String desc);
 }
