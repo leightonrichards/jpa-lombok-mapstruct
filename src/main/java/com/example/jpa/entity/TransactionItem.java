@@ -1,8 +1,7 @@
 package com.example.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -14,14 +13,13 @@ public class TransactionItem {
     @Column(name = "id", columnDefinition = "int UNSIGNED not null")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "transaction_number", referencedColumnName = "transaction_number")
     private SalesTransaction parentTransaction;
 
     @Column(name = "item_number")
     private Integer itemNumber;
 
-    @Column(name = "description", nullable = false, length = 25)
     private String description;
 
     @Column(name = "item_value", nullable = false)

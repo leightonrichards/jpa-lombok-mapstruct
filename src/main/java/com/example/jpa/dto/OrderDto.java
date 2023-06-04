@@ -1,9 +1,8 @@
 package com.example.jpa.dto;
 
 import com.example.jpa.entity.SalesTransaction;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -14,13 +13,18 @@ import java.util.Set;
  * DTO for {@link SalesTransaction}
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Accessors(chain = true)
 public class OrderDto implements Serializable {
     private Long id;
-    private Integer orderNumber;
-    private String description;
-    private Integer orderValue;
-    private Set<OrderItemDto> orderItems = new LinkedHashSet<>();
+    private final Integer orderNumber;
+    private final String description;
+    private Integer orderValue = 0;
+    final private Set<OrderItemDto> orderItems = new LinkedHashSet<>();
+
+    public void addItem(OrderItemDto itemDto) {
+        orderItems.add(itemDto);
+        itemDto.setParentOrder(this);
+        orderValue += itemDto.getItemValue();
+    }
 }

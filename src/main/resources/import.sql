@@ -15,7 +15,7 @@ CREATE TABLE transaction_item (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 
 INSERT INTO sales_transaction (transaction_number, description, transaction_value) VALUES  (1,  'SalesTransaction1', 100);
 INSERT INTO sales_transaction (transaction_number, description, transaction_value) VALUES  (2,  'SalesTransaction2', 200);
-INSERT INTO sales_transaction (transaction_number, description, transaction_value) VALUES  (3,  'SalesTransaction2', 300);
+INSERT INTO sales_transaction (transaction_number, description, transaction_value) VALUES  (3,  'SalesTransaction3', 300);
 
 INSERT INTO transaction_item (transaction_number, item_number, description, item_value) VALUES  (  1, 1, 'Item 1', 20);
 INSERT INTO transaction_item (transaction_number, item_number, description, item_value) VALUES  (  1, 2, 'Item 2', 30);

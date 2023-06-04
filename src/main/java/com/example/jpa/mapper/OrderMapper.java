@@ -6,7 +6,7 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {OrderItemMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {OrderItemMapper.class})
 public interface OrderMapper {
     @Mapping(source = "orderValue", target = "transactionValue")
     @Mapping(source = "orderNumber", target = "transactionNumber")

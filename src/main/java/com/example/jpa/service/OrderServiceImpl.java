@@ -3,7 +3,7 @@ package com.example.jpa.service;
 import com.example.jpa.dto.OrderDto;
 import com.example.jpa.mapper.OrderMapper;
 import com.example.jpa.repository.SalesTransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,11 +11,13 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService{
 
-    @Autowired
     private SalesTransactionRepository repository;
 
-    @Autowired
-    private OrderMapper mapper;
+    private OrderMapper mapper = Mappers.getMapper(OrderMapper.class);
+
+    public OrderServiceImpl(SalesTransactionRepository repository) {
+        this.repository=repository;
+    }
 
     @Override
     public List<OrderDto> fetchOrders() {
@@ -25,5 +27,9 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public OrderDto fetchByDescription(String desc) {
         return mapper.toDto(repository.findByDescription(desc));
+    }
+
+    public OrderDto newOrder(OrderDto newOrder) {
+        return mapper.toDto(repository.save(mapper.toEntity(newOrder)));
     }
 }

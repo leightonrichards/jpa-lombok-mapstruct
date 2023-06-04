@@ -7,4 +7,6 @@ import java.util.List;
 public interface OrderService {
     List<OrderDto> fetchOrders();
     OrderDto fetchByDescription(String desc);
+
+    OrderDto newOrder(OrderDto newOrder);
 }

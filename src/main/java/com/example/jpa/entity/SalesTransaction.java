@@ -1,8 +1,7 @@
 package com.example.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,7 +19,6 @@ public class SalesTransaction {
     @Column(name = "transaction_number", nullable = false)
     private Integer transactionNumber;
 
-    @Column(name = "description", nullable = false, length = 25)
     private String description;
 
     @Column(name = "transaction_value", nullable = false)
