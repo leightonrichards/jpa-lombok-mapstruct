@@ -32,4 +32,14 @@ public class OrderServiceImpl implements OrderService{
     public OrderDto newOrder(OrderDto newOrder) {
         return mapper.toDto(repository.save(mapper.toEntity(newOrder)));
     }
+
+    @Override
+    public List<OrderDto> findByTransactionValueGreaterThan(Integer value) {
+        return mapper.toDto(repository.findByTransactionValueGreaterThan(value));
+    }
+
+    @Override
+    public List<OrderDto> findByTransactionValueGreaterThan170() {
+        return mapper.toDto(repository.findByCustomQuery(170));
+    }
 }

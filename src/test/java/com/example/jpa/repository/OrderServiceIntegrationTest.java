@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
@@ -49,5 +51,17 @@ class OrderServiceIntegrationTest {
         assertEquals(4, foundOrder.getOrderNumber());
         assertEquals(1, foundOrder.getOrderItems().size());
         assertEquals(50, foundOrder.getOrderItems().stream().mapToInt(OrderItemDto::getItemValue).sum());
+    }
+
+    @Test
+    public void ordersByValueGreaterThan150CanBeFound() {
+        List<OrderDto> orderDtos = orderService.findByTransactionValueGreaterThan(150);
+        assertEquals(2, orderDtos.size());
+    }
+
+    @Test
+    public void ordersByValueGreaterThan170CanBeFound() {
+        List<OrderDto> orderDtos = orderService.findByTransactionValueGreaterThan170();
+        assertEquals(2, orderDtos.size());
     }
 }

@@ -9,4 +9,8 @@ public interface OrderService {
     OrderDto fetchByDescription(String desc);
 
     OrderDto newOrder(OrderDto newOrder);
+
+    List<OrderDto> findByTransactionValueGreaterThan(Integer value);
+
+    List<OrderDto> findByTransactionValueGreaterThan170();
 }
