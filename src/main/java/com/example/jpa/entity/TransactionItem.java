@@ -14,7 +14,7 @@ public class TransactionItem {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "transaction_number", referencedColumnName = "transaction_number")
+    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
     private SalesTransaction parentTransaction;
 
     @Column(name = "item_number")

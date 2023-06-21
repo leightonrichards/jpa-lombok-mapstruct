@@ -6,7 +6,8 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-//@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+//@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE,
+// componentModel = MappingConstants.ComponentModel.SPRING)
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {OrderItemMapper.class})
 public interface OrderMapper {
     @Mapping(source = "orderValue", target = "transactionValue")
@@ -19,14 +20,13 @@ public interface OrderMapper {
         salesTransaction.getTransactionItems().forEach(transactionItem -> transactionItem.setParentTransaction(salesTransaction));
     }
 
+    @InheritInverseConfiguration(name = "toEntity")
+    OrderDto toDto(SalesTransaction salesTransaction);
+
     @AfterMapping
     default void linkOrderItems(@MappingTarget OrderDto orderDto) {
         orderDto.getOrderItems().forEach(orderItemDto -> orderItemDto.setParentOrder(orderDto));
     }
-
-    @InheritInverseConfiguration(name = "toEntity")
-    OrderDto toDto(SalesTransaction salesTransaction);
-
 
     List<OrderDto> toDto(List<SalesTransaction> salesTransactions);
 }

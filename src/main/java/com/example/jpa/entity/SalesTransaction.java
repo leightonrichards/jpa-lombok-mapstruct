@@ -12,7 +12,6 @@ import java.util.Set;
 @Table(name = "sales_transaction")
 public class SalesTransaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "int UNSIGNED not null")
     private Long id;
 

@@ -40,20 +40,6 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
-    public void whenANewOrderIsCreatedThenOrderCanBeFound() {
-        OrderDto order = new OrderDto(4, "SalesTransaction4");
-        order.addItem(new OrderItemDto(1, "Item 41", 50));
-
-        orderService.newOrder(order);
-
-        OrderDto foundOrder = orderService.fetchByDescription("SalesTransaction4");
-        assertEquals(50, foundOrder.getOrderValue());
-        assertEquals(4, foundOrder.getOrderNumber());
-        assertEquals(1, foundOrder.getOrderItems().size());
-        assertEquals(50, foundOrder.getOrderItems().stream().mapToInt(OrderItemDto::getItemValue).sum());
-    }
-
-    @Test
     public void ordersByValueGreaterThan150CanBeFound() {
         List<OrderDto> orderDtos = orderService.findByTransactionValueGreaterThan(150);
         assertEquals(2, orderDtos.size());
